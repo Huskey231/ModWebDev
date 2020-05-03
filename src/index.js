@@ -8,6 +8,16 @@ const ex1Button = (word) => {
   return handler
 }
 
+// Also valid when returning a function
+const ex2Button = (word) => {
+  return () => console.log("I am a ", word, " button rendering test through a function!")
+}
+
+// Alos valid, since we only have a single return previously this would be the shortest most concise declaration
+const ex3Button = (word) => () => {
+  console.log("I am a ", word, " button rendering test through a function!")
+}
+
 const App = (props) => {
   return (
     <div>
