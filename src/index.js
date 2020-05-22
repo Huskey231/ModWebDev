@@ -4,16 +4,26 @@ import ReactDOM from 'react-dom'
 const Statistics = (props) => {
   const average = (props.good - props.bad)/(props.good + props.bad + props.neutral)
   const per_positive = props.good / (props.good + props.bad + props.neutral)
-  return (
-    <div>
-    <h2>Current Statistics</h2>
-    Bad: {props.bad}<br/>
-    Neutral: {props.neutral}<br/>
-    Good: {props.good}<br/>
-    Average: {average}<br/>
-    Positive: {per_positive}
-    </div>
-  )
+  if (props.good + props.neutral + props.bad > 0) {
+    return (
+      <div>
+      <h2>Current Statistics</h2>
+      Bad: {props.bad}<br/>
+      Neutral: {props.neutral}<br/>
+      Good: {props.good}<br/>
+      Average: {average}<br/>
+      Positive: {per_positive}
+      </div>
+    )  
+  }
+  else {
+    return (
+      <div>
+      <h2>Current Statistics</h2>
+      No feedback given
+      </div>
+    )
+    }
 }
 
 const App = () => {
@@ -34,14 +44,6 @@ const App = () => {
   // having to write the handler out fully and return it
   const GoodHandler = () =>
     () => setGood(good + 1)
-
-  // const Average = () => {
-  //   return (good - bad)/(good + bad + neutral)
-  // }
-
-  // const PerPositive = () => {
-  //   return good / (good + bad + neutral)
-  // }
 
   return (
     <div>
