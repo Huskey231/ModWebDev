@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+const DynamicButton = (props) => {
+  return <button onClick={props.handler}>{props.text}</button>
+}
+
+const Statistic = ({name, stat}) => {
+  return <span>{name}: {stat}</span>
+}
+
 const Statistics = (props) => {
   const average = (props.good - props.bad)/(props.good + props.bad + props.neutral)
   const per_positive = props.good / (props.good + props.bad + props.neutral)
@@ -8,11 +16,11 @@ const Statistics = (props) => {
     return (
       <div>
       <h2>Current Statistics</h2>
-      Bad: {props.bad}<br/>
-      Neutral: {props.neutral}<br/>
-      Good: {props.good}<br/>
-      Average: {average}<br/>
-      Positive: {per_positive}
+      <Statistic name="Bad" stat={props.bad}/><br/>
+      <Statistic name="Neutral" stat={props.neutral}/><br/>
+      <Statistic name="Good" stat={props.good}/><br/>
+      <Statistic name="Average" stat={average}/><br/>
+      <Statistic name="Positive" stat={per_positive}/>%<br/>
       </div>
     )  
   }
@@ -48,9 +56,9 @@ const App = () => {
   return (
     <div>
       <h2>Please tell us how we did!</h2>
-      <button onClick={() => setBad(bad + 1)}>Bad</button>
-      <button onClick={NeutralHandler()}>Neutral</button>
-      <button onClick={GoodHandler()}>Good</button>
+      <DynamicButton text="Bad" handler={() => setBad(bad + 1)}/>
+      <DynamicButton text="Neutral" handler={() => setNeutral(neutral + 1)}/>
+      <DynamicButton text="Good" handler={() => setGood(good + 1)}/>
       <br></br>
       <Statistics good={good} bad={bad} neutral={neutral}/>
     </div>
