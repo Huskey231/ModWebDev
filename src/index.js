@@ -16,11 +16,26 @@ const Statistics = (props) => {
     return (
       <div>
       <h2>Current Statistics</h2>
-      <Statistic name="Bad" stat={props.bad}/><br/>
-      <Statistic name="Neutral" stat={props.neutral}/><br/>
-      <Statistic name="Good" stat={props.good}/><br/>
-      <Statistic name="Average" stat={average}/><br/>
-      <Statistic name="Positive" stat={per_positive}/>%<br/>
+        <tr>
+          <td>Bad</td>
+          <td>{props.bad}</td>
+        </tr>
+        <tr>
+          <td>Neutral</td>
+          <td>{props.neutral}</td>
+        </tr>
+        <tr>
+          <td>Good</td>
+          <td>{props.good}</td>
+        </tr>
+        <tr>
+          <td>Average</td>
+          <td>{average}</td>
+        </tr>
+        <tr>
+          <td>Positive</td>
+          <td>{per_positive}</td>
+        </tr>
       </div>
     )  
   }
