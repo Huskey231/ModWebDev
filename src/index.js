@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  // const points = {0: 0, 1:0, 2: 0, 3:0, 4: 0, 5: 0}
+  const [votes, setVotes] = useState(Array(6).fill(0))
 
   const Randomizer = () => {
     const handler = () => {
@@ -11,11 +13,21 @@ const App = (props) => {
     return handler
   }
   
-
+  const Incrementer = (selected) => {
+    const handler = () => {
+      const copy = [...votes]
+      copy[selected]++
+      setVotes(copy)  
+    }
+    return handler  
+  }    
+  
   return (
     <div>
       {props.anecdotes[selected]}<br/>
+      <p>This quote has {votes[selected]} votes</p>
       <button onClick={Randomizer()}>Show new</button>
+      <button onClick={Incrementer(selected)}>Vote</button>
     </div>
   )
 }
