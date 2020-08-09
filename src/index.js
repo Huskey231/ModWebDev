@@ -21,10 +21,10 @@ const App = (props) => {
     return handler  
   }    
 
-  const looper = (length) =>{
+  const Looper = (length) =>{
     let highestVoted = 0;
     for(var i = 0; i < length; i++){
-      if(votes[i] > highestVoted){
+      if(votes[i] > votes[highestVoted]){
         highestVoted = i;
       }
     }
@@ -38,7 +38,7 @@ const App = (props) => {
       <button onClick={Randomizer()}>Show new</button>
       <button onClick={Incrementer(selected)}>Vote</button>
       <h3>Highest Voted Quote</h3>
-      <p>{props.anecdotes[looper(votes.length)]}</p>
+      <p>{props.anecdotes[Looper(votes.length)]}</p>
     </div>
   )
 }
