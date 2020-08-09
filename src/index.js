@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
-  // const points = {0: 0, 1:0, 2: 0, 3:0, 4: 0, 5: 0}
   const [votes, setVotes] = useState(Array(6).fill(0))
 
   const Randomizer = () => {
@@ -21,13 +20,25 @@ const App = (props) => {
     }
     return handler  
   }    
-  
+
+  const looper = (length) =>{
+    let highestVoted = 0;
+    for(var i = 0; i < length; i++){
+      if(votes[i] > highestVoted){
+        highestVoted = i;
+      }
+    }
+    return highestVoted;
+  }
+
   return (
     <div>
       {props.anecdotes[selected]}<br/>
       <p>This quote has {votes[selected]} votes</p>
       <button onClick={Randomizer()}>Show new</button>
       <button onClick={Incrementer(selected)}>Vote</button>
+      <h3>Highest Voted Quote</h3>
+      <p>{props.anecdotes[looper(votes.length)]}</p>
     </div>
   )
 }
